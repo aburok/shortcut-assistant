@@ -1,0 +1,48 @@
+
+[sc]  git log --oneline --graph --color --all
+[def]  show, show full version tree, commit history, all branches,  in command line
+
+[sc]  git checkout -b <newBranchName>
+[def] Creates new branch and also switches the working directory to it
+
+[sc] git status 
+[def] pokazuje status, jakie pliki sa zmienione, jakie nowe itd
+
+[sc] git fetch
+[def] aktualizuje informacje o lokalne repo
+
+[sc] git checkout nazwa_brancha
+[def] przelacza na branch nazwa_brancha
+
+[sc] git checkout nazwa_brancha -f
+[def] wymusza zmiane gdy git nie pozwala
+
+[sc] git checkout –b nazwa_nowego_brancha
+[def] dodaje nowego brancha o nazwie nazwa_nowego_brancha i przelacza na niego
+
+[sc] git add extension/* 
+[def] dodaje do commita wszystkie pliki w katalogu extension
+
+[sc] git commit
+[def] robi commit ? pojawi sie ekran z monitem o wpisanie komentarza do commita
+
+[sc] git commit –m „Komentarz do commita”
+[def] jw tylko bez osobnego ekranu do wpisania komentarza
+
+[sc] git pull origin nazwa_brancha
+[def] aktualizuje brancha na serwerze
+
+[sc] git push origin nazwa_brancha
+[def] wysyla brancha na serwer
+
+[sc] git push origin nazwa_brancha:inny_branch
+[def] wysyla z nazwa_brancha do inny_branch na serwerze
+
+[sc] git branch -d "nazwa_brancha"
+[def] usuwa brancha
+
+[sc] git rebase -i "numer commitu"
+[def] scala wszytsko od tego komitu w jeden wielki
+
+[sc] git pull --rebase
+[def] coś tam robi 
