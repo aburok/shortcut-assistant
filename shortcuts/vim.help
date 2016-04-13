@@ -487,6 +487,8 @@
 [sc] ?
 [def] Toggle the display of the quick help
 
+[sc] :NERDTree D:\
+[def] Change disk / partition; Move to other disk
 
 // VIM_SURROUND
 // [Normal mode]
@@ -755,4 +757,6 @@
 [sc] \tn
 [def] executes :TabNoteFromSelectedText
 
-
+[sc] :set guioptions+=m --OR--  :set go+=m
+[tag] gvim gui menubar
+[def] turn off/on the menubar / menu bar

@@ -835,3 +835,9 @@
 [sc] if
 [def] Conditionally perform a command
 
+[sc] ls | where LastWriteTime -gt (Get-Date).AddDays(-1) | rm -Force -Recurse -Confirm:$false
+[def] Delete files that are newer than yesterday
+
+
+[sc] One way to do this is to use the WindowTitle property from $host.ui.rawui, as shown here.  $host.ui.RawUI.WindowTitle = “Changed Title”
+[def]  How can I change the title of the Windows PowerShell console?

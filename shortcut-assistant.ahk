@@ -1,6 +1,7 @@
 #/::
-    helpFile := GetHelpFilePath()
-    if (helpFile){
+    helpFileName := GetHelpFilePath()
+    if (helpFileName){
+	    helpFile := A_ScriptDir "\shortcuts\" helpFileName
         GoSub, READHELP
         GoSub, CREATEGUI
         GoSub, FILLLIST
@@ -14,50 +15,50 @@ return
 GetHelpFilePath(){
     WinGetClass, windowClass, A
     WinGetTitle , Title, A
-    folder := "shortcuts"
+    
+	file:=""
     if ( windowClass == "rctrl_renwnd32" )
     {
-        return "shortcuts\outlook.help"
+        file := "outlook.help"
     }
     if ( windowClass == "Vim" )
     {
-        return "shortcuts\vim.help"
+        file :=  "vim.help"
     }
     if (windowClass == "ConsoleWindowClass")
     {
         IfInString, Title, PowerShell
         {
-            return "shortcuts\powershell.help"
+            file :=  "powershell.help"
         }
 
-        return "shortcuts\cmd.help"
+        file :=  "cmd.help"
     }
     if (windowClass == "CabinetWClass"){
-        return "shortcuts\windows7.help"
+        file :=  "windows7.help"
     }
     if (windowClass == "XLMAIN"){
-        return "shortcuts\excel.help"
+        file :=  "excel.help"
     }
     if(windowClass == "OpusApp"){
-        return "shortcuts\word.help"
+        file :=  "word.help"
     }
     IfInString, Title, Visual Studio
     {
         IfInString, windowClass, HwndWrapper
         {
-            return "shortcuts\vs.help"
+            file := "vs.help"
         }
     }
 
     if (RegExMatch(windowClass, "Chrome.*") > 0 ){
-        return "shortcuts\Chrome.help"
+        file :=  "Chrome.help"
     }
 
     if (windowClass == "TTOTAL_CMD") {
-        return "shortcuts\totalcmd.help"
+        file :=  "shortcuts\totalcmd.help"
     }
-
-    return
+    return file
 }
 
 CREATEGUI:
@@ -66,12 +67,13 @@ CREATEGUI:
     Gui, Add, Edit, vFilterText gFILLLIST W1000
     Gui, Add, ListView, grid r20 W1000, Shortcut|Description
     LV_ModifyCol(1, 200)
-        ;:Gui, Add, Text,, %A_LoopReadLine%
+    Gui, Add, Text,, Working Dir . %A_WorkingDir%
+	Gui, Add, Text,, ScriptDir . %A_ScriptDir%
     Gui, Show, , Shortcuts for Outlook from %helpFile%.
 return
 
 READHELP:
-    Loop, READ, %helpFile%
+	Loop, READ, %helpFile%
     {
         Line%A_Index% := A_LoopReadLine
         Line0 = %A_Index%
@@ -95,7 +97,7 @@ FILLLIST:
             }
             else if (IsDefinition(line)){
                 def := RegExReplace(line, "^\[def\]\s*")
-
+	
                 if(IsMatchingFilter(def, filter)){
                     counter := counter + 1
                     LV_Add("", sc, def, counter)
